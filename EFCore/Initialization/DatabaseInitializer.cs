@@ -24,14 +24,15 @@ public class DatabaseInitializer : IDatabaseInitializer
     {
         await InitializeTenantDbAsync(cancellationToken);
 
-        foreach (var tenant in await _tenantDbContext.TenantInfo.ToListAsync(cancellationToken))
-        {
-            await InitializeApplicationDbForTenantAsync(MultitenancyConstants.DefaultPassword, tenant,
-                cancellationToken);
-        }
+        // init ten
+        // foreach (var tenant in await _tenantDbContext.TenantInfo.ToListAsync(cancellationToken))
+        // {
+        //     await InitializeApplicationDbForTenantAsync(user, tenant,
+        //         cancellationToken);
+        // }
     }
 
-    public async Task InitializeApplicationDbForTenantAsync(string adminPassword, VHNTenantInfo tenant,
+    public async Task InitializeApplicationDbForTenantAsync(User user, VHNTenantInfo tenant,
         CancellationToken cancellationToken)
     {
         // First create a new scope
@@ -46,7 +47,7 @@ public class DatabaseInitializer : IDatabaseInitializer
 
         // Then run the initialization in the new scope
         await scope.ServiceProvider.GetRequiredService<ApplicationDbInitializer>()
-            .InitializeAsync(adminPassword, cancellationToken);
+            .InitializeAsync(user, cancellationToken);
     }
 
     private async Task InitializeTenantDbAsync(CancellationToken cancellationToken)
@@ -59,6 +60,7 @@ public class DatabaseInitializer : IDatabaseInitializer
         await SeedTenantAsync(cancellationToken);
     }
 
+    // Seed the tenant database with some initial data
     private Task SeedTenantAsync(CancellationToken cancellationToken)
     {
         // if (await _tenantDbContext.TenantInfo.FindAsync(new object?[] {MultitenancyConstants.Root.Id},

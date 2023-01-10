@@ -1,6 +1,6 @@
 ﻿namespace Shared.Authorization;
 
-public static class Claims
+public class Claims
 {
     public const string Tenant = "tenant";
     public const string Permission = "permission";

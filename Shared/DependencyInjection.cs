@@ -10,7 +10,7 @@ public static class DependencyInjection
     public static IServiceCollection AddShare(this IServiceCollection services)
     {
         services.AddSingleton<IPasswordHelper, PasswordHelper>();
-        services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+        services.AddSingleton<IJwtTokenHelper, JwtTokenHelper>();
 
         return services;
     }

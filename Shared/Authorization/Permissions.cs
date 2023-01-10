@@ -2,43 +2,23 @@
 
 namespace Shared.Authorization;
 
-public static class Action
-{
-    public const string View = nameof(View);
-    public const string Search = nameof(Search);
-    public const string Create = nameof(Create);
-    public const string Update = nameof(Update);
-
-    public const string Delete = nameof(Delete);
-    // public const string UpgradeSubscription = nameof(UpgradeSubscription);
-}
-
-public static class Resource
-{
-    // public const string Tenants = nameof(Tenants);
-    public const string Users = nameof(Users);
-    public const string UserRoles = nameof(UserRoles);
-    public const string Roles = nameof(Roles);
-    public const string RoleClaims = nameof(RoleClaims);
-}
-
 public static class Permissions
 {
     private static readonly Permission[] _all = new Permission[]
     {
-        new("View Users", Action.View, Resource.Users),
-        new("Search Users", Action.Search, Resource.Users),
-        new("Create Users", Action.Create, Resource.Users),
-        new("Update Users", Action.Update, Resource.Users),
-        new("Delete Users", Action.Delete, Resource.Users),
-        new("View UserRoles", Action.View, Resource.UserRoles),
-        new("Update UserRoles", Action.Update, Resource.UserRoles),
-        new("View Roles", Action.View, Resource.Roles),
-        new("Create Roles", Action.Create, Resource.Roles),
-        new("Update Roles", Action.Update, Resource.Roles),
-        new("Delete Roles", Action.Delete, Resource.Roles),
-        new("View RoleClaims", Action.View, Resource.RoleClaims),
-        new("Update RoleClaims", Action.Update, Resource.RoleClaims),
+        new("View Users", Actions.View, Resources.Users, new List<string>() { Roles.Admin }),
+        new("Search Users", Actions.Search, Resources.Users, new List<string>() { Roles.Admin }),
+        new("Create Users", Actions.Create, Resources.Users, new List<string>() { Roles.Admin }),
+        new("Update Users", Actions.Update, Resources.Users, new List<string>() { Roles.Admin }),
+        new("Delete Users", Actions.Delete, Resources.Users, new List<string>() { Roles.Admin }),
+        new("View UserRoles", Actions.View, Resources.UserRoles, new List<string>() { Roles.Admin }),
+        new("Update UserRoles", Actions.Update, Resources.UserRoles, new List<string>() { Roles.Admin }),
+        new("View Roles", Actions.View, Resources.Roles, new List<string>() { Roles.Admin }),
+        new("Create Roles", Actions.Create, Resources.Roles, new List<string>() { Roles.Admin }),
+        new("Update Roles", Actions.Update, Resources.Roles, new List<string>() { Roles.Admin }),
+        new("Delete Roles", Actions.Delete, Resources.Roles, new List<string>() { Roles.Admin }),
+        new("View RoleClaims", Actions.View, Resources.RoleClaims, new List<string>() { Roles.Admin }),
+        new("Update RoleClaims", Actions.Update, Resources.RoleClaims, new List<string>() { Roles.Admin }),
         // new("View Tenants", Action.View, Resource.Tenants, IsRoot: true),
         // new("Create Tenants", Action.Create, Resource.Tenants, IsRoot: true),
         // new("Update Tenants", Action.Update, Resource.Tenants, IsRoot: true),
@@ -51,14 +31,16 @@ public static class Permissions
     //     new ReadOnlyCollection<Permission>(_all.Where(p => p.IsRoot).ToArray());
 
     public static IReadOnlyList<Permission> Admin { get; } =
-        new ReadOnlyCollection<Permission>(_all.ToList());
+        new ReadOnlyCollection<Permission>(_all.Where(p => p.Roles.Contains(Roles.Admin)).ToList());
 
     public static IReadOnlyList<Permission> Basic { get; } =
-        new ReadOnlyCollection<Permission>(_all.Where(p => p.IsBasic).ToList());
+        new ReadOnlyCollection<Permission>(_all.Where(p => p.Roles.Contains(Roles.Admin)).ToList());
 }
 
-public record Permission(string Description, string Action, string Resource, bool IsBasic = false)
+public record Permission(string Description, string Action, string Resource, List<string> Roles)
 {
-    public string Name => NameFor(Action, Resource);
-    public static string NameFor(string action, string resource) => $"Permissions.{resource}.{action}";
+    public string Name => _nameFor(Action, Resource);
+    public static string NameFor(string action, string resource) => _nameFor(action, resource);
+
+    private static string _nameFor(string action, string resource) => $"{nameof(Permissions)}.{resource}.{action}";
 }

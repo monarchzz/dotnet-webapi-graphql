@@ -1,4 +1,5 @@
-﻿using EFCore.Context;
+﻿using Domain.Entities;
+using EFCore.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCore.Initialization;
@@ -14,7 +15,7 @@ public class ApplicationDbInitializer
         _dbSeeder = dbSeeder;
     }
 
-    public async Task InitializeAsync(string adminPassword, CancellationToken cancellationToken)
+    public async Task InitializeAsync(User user, CancellationToken cancellationToken)
     {
         if (_dbContext.Database.GetMigrations().Any())
         {
@@ -25,7 +26,7 @@ public class ApplicationDbInitializer
 
             if (await _dbContext.Database.CanConnectAsync(cancellationToken))
             {
-                await _dbSeeder.SeedDatabaseAsync(adminPassword, _dbContext, cancellationToken);
+                await _dbSeeder.SeedDatabaseAsync(user, _dbContext, cancellationToken);
             }
         }
     }

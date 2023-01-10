@@ -9,19 +9,18 @@ namespace EFCore.Initialization;
 public class ApplicationDbSeeder
 {
     private readonly VHNTenantInfo _currentTenant;
-    private readonly IPasswordHelper _passwordHelper;
 
-    public ApplicationDbSeeder(VHNTenantInfo currentTenant, IPasswordHelper passwordHelper)
+    public ApplicationDbSeeder(VHNTenantInfo currentTenant)
     {
         _currentTenant = currentTenant;
-        _passwordHelper = passwordHelper;
     }
 
-    public async Task SeedDatabaseAsync(string adminPassword, AppDbContext dbContext,
+    public async Task SeedDatabaseAsync(User user,
+        AppDbContext dbContext,
         CancellationToken cancellationToken)
     {
         await SeedRolesAsync(dbContext, cancellationToken);
-        await SeedAdminUserAsync(adminPassword, dbContext, cancellationToken);
+        await SeedAdminUserAsync(user, dbContext, cancellationToken);
     }
 
     private async Task SeedRolesAsync(AppDbContext dbContext, CancellationToken cancellationToken)
@@ -52,8 +51,10 @@ public class ApplicationDbSeeder
         }
     }
 
-    private static async Task AssignPermissionsToRoleAsync(AppDbContext dbContext, IEnumerable<Permission> permissions,
-        Role role, CancellationToken cancellationToken)
+    private static async Task AssignPermissionsToRoleAsync(AppDbContext dbContext,
+        IEnumerable<Permission> permissions,
+        Role role,
+        CancellationToken cancellationToken)
     {
         await dbContext.AddRangeAsync(permissions.Select(p => new RoleClaim
         {
@@ -64,7 +65,8 @@ public class ApplicationDbSeeder
         await dbContext.SaveChangesAsync(cancellationToken);
     }
 
-    private async Task SeedAdminUserAsync(string adminPassword, AppDbContext dbContext,
+    private async Task SeedAdminUserAsync(User user,
+        AppDbContext dbContext,
         CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_currentTenant.Id) || string.IsNullOrWhiteSpace(_currentTenant.AdminEmail))
@@ -72,15 +74,8 @@ public class ApplicationDbSeeder
             return;
         }
 
-        var adminUser = new User
-        {
-            FirstName = _currentTenant.Id.Trim().ToLowerInvariant(),
-            LastName = Roles.Admin,
-            Email = _currentTenant.AdminEmail,
-            Password = _passwordHelper.HashPassword(adminPassword),
-        };
 
-        await dbContext.Users.AddAsync(adminUser, cancellationToken);
+        await dbContext.Users.AddAsync(user, cancellationToken);
 
         // Assign role to user
         var adminRole = await dbContext.Roles.FirstOrDefaultAsync(r => r.Name == Roles.Admin, cancellationToken);
@@ -88,7 +83,7 @@ public class ApplicationDbSeeder
         {
             await dbContext.UserRoles.AddAsync(new UserRole
             {
-                UserId = adminUser.Id,
+                UserId = user.Id,
                 RoleId = adminRole.Id
             }, cancellationToken);
         }

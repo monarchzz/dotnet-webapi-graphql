@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\EFCore\\EFCore.csproj": {}
+    "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\EFCore\\EFCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj": {
+    "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\obj\\",
+        "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\mon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -65,25 +61,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\EFCore\\EFCore.csproj": {
+    "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\EFCore\\EFCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\EFCore\\EFCore.csproj",
+        "projectUniqueName": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\EFCore\\EFCore.csproj",
         "projectName": "EFCore",
-        "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\EFCore\\EFCore.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\EFCore\\obj\\",
+        "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\EFCore\\EFCore.csproj",
+        "packagesPath": "C:\\Users\\mon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\EFCore\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -97,11 +89,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj"
+              "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\Shared.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\Shared.csproj"
+              "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\Shared.csproj"
               }
             }
           }
@@ -119,12 +111,6 @@
             "Finbuckle.MultiTenant.EntityFrameworkCore": {
               "target": "Package",
               "version": "[6.9.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -147,25 +133,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\Shared.csproj": {
+    "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\Shared.csproj",
+        "projectUniqueName": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\Shared.csproj",
         "projectName": "Shared",
-        "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\Shared.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Shared\\obj\\",
+        "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\Shared.csproj",
+        "packagesPath": "C:\\Users\\mon\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Shared\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\mon\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -179,8 +161,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\PC\\Desktop\\vhn\\VHN.BE\\Domain\\Domain.csproj"
+              "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\mon\\Desktop\\vhn\\dotnet-webapi-graphql\\Domain\\Domain.csproj"
               }
             }
           }
@@ -216,7 +198,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

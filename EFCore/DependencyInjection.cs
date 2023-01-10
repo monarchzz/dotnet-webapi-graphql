@@ -2,6 +2,7 @@
 using EFCore.ConnectionString;
 using EFCore.Context;
 using EFCore.Initialization;
+using EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -23,8 +24,10 @@ public static class DependencyInjection
             .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
             .AddTransient<ApplicationDbInitializer>()
             .AddTransient<ApplicationDbSeeder>()
-            .AddTransient<IConnectionStringSecurer, ConnectionStringSecurer>()
-            .AddTransient<IConnectionStringValidator, ConnectionStringValidator>();
+            .AddSingleton<IConnectionStringSecurer, ConnectionStringSecurer>()
+            .AddSingleton<IConnectionStringGenerator, ConnectionStringGenerator>();
+
+        services.AddScoped(typeof(IAppRepository<>), typeof(AppRepository<>));
 
         return services;
     }

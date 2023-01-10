@@ -10,7 +10,6 @@
         "dependencies": {
           "Domain": "1.0.0",
           "Finbuckle.MultiTenant.EntityFrameworkCore": "6.9.1",
-          "Microsoft.EntityFrameworkCore.Design": "6.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.12",
           "Shared": "1.0.0"
         },
@@ -66,14 +65,6 @@
           "lib/net6.0/Finbuckle.MultiTenant.EntityFrameworkCore.dll": {
             "assemblyVersion": "6.9.1.0",
             "fileVersion": "6.9.1.0"
-          }
-        }
-      },
-      "Humanizer.Core/2.8.26": {
-        "runtime": {
-          "lib/netstandard2.0/Humanizer.dll": {
-            "assemblyVersion": "2.8.0.0",
-            "fileVersion": "2.8.26.1919"
           }
         }
       },
@@ -191,18 +182,6 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/6.0.12": {},
-      "Microsoft.EntityFrameworkCore.Design/6.0.12": {
-        "dependencies": {
-          "Humanizer.Core": "2.8.26",
-          "Microsoft.EntityFrameworkCore.Relational": "6.0.12"
-        },
-        "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "6.0.12.0",
-            "fileVersion": "6.0.1222.56411"
-          }
-        }
-      },
       "Microsoft.EntityFrameworkCore.Relational/6.0.12": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.12",
@@ -611,13 +590,6 @@
       "path": "finbuckle.multitenant.entityframeworkcore/6.9.1",
       "hashPath": "finbuckle.multitenant.entityframeworkcore.6.9.1.nupkg.sha512"
     },
-    "Humanizer.Core/2.8.26": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-OiKusGL20vby4uDEswj2IgkdchC1yQ6rwbIkZDVBPIR6al2b7n3pC91elBul9q33KaBgRKhbZH3+2Ur4fnWx2A==",
-      "path": "humanizer.core/2.8.26",
-      "hashPath": "humanizer.core.2.8.26.nupkg.sha512"
-    },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -687,13 +659,6 @@
       "sha512": "sha512-ZDUY+KlsIyKdfvIJeNdqRiPExFQ5GRZVdx/Cp52vhpCJRImYv34O0Xfmw2eiLu4qe1jmM2pTzAAFKELaKwtj/w==",
       "path": "microsoft.entityframeworkcore.analyzers/6.0.12",
       "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.12.nupkg.sha512"
-    },
-    "Microsoft.EntityFrameworkCore.Design/6.0.12": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-R4rse/Dli8xqyDoQ0BVO8ECAEuwsDvu+qolTyvJl0mmFJodcxTHZQ8dUxxElqk+fTkiHE9rBMIZPoLE10ZCOCA==",
-      "path": "microsoft.entityframeworkcore.design/6.0.12",
-      "hashPath": "microsoft.entityframeworkcore.design.6.0.12.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.Relational/6.0.12": {
       "type": "package",

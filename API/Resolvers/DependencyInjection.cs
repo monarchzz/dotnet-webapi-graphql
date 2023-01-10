@@ -1,4 +1,6 @@
-﻿using API.Resolvers.Tenants;
+﻿using API.Resolvers.Authentication;
+using API.Resolvers.Tenants;
+using API.Resolvers.Users;
 using API.Resolvers.WeatherForecasts;
 using HotChocolate.Execution.Configuration;
 
@@ -9,8 +11,10 @@ public static class DependencyInjection
     public static IServiceCollection AddResolvers(this IServiceCollection services)
     {
         services.AddGraphQLServer()
+            // .AddMutationConventions(applyToAllMutations: true)
+            .AddAuthorization()
             .AddQuery()
-            // .AddMutation()
+            .AddMutation()
             // .AddSubscription()
             .AddFiltering()
             .AddSorting()
@@ -25,8 +29,8 @@ public static class DependencyInjection
         builder
             .AddQueryType()
             .AddTypeExtension<WeatherForecastQueries>()
-            .AddTypeExtension<TenantQueries>();
-
+            .AddTypeExtension<TenantQueries>()
+            .AddTypeExtension<UserQueries>();
 
         return builder;
     }
@@ -34,7 +38,10 @@ public static class DependencyInjection
     private static IRequestExecutorBuilder AddMutation(this IRequestExecutorBuilder builder)
     {
         // Add type extensions
-        builder.AddMutationType();
+        builder
+            .AddMutationType()
+            .AddTypeExtension<TenantMutations>()
+            .AddTypeExtension<AuthenticationMutations>();
 
         return builder;
     }

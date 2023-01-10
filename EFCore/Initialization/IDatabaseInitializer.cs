@@ -6,6 +6,6 @@ public interface IDatabaseInitializer
 {
     Task InitializeDatabasesAsync(CancellationToken cancellationToken);
 
-    Task InitializeApplicationDbForTenantAsync(string adminPassword, VHNTenantInfo tenant,
+    Task InitializeApplicationDbForTenantAsync(User user, VHNTenantInfo tenant,
         CancellationToken cancellationToken);
 }

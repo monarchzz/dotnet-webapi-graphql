@@ -1,7 +1,12 @@
-﻿namespace API.Resolvers.WeatherForecasts;
+﻿using API.Authentication.Permissions;
+using HotChocolate.AspNetCore.Authorization;
+using Shared.Authorization;
+
+namespace API.Resolvers.WeatherForecasts;
 
 [ExtendObjectType(OperationTypeNames.Query)]
-public class WeatherForecastQueries 
+[Authorize]
+public class WeatherForecastQueries
 {
     private static readonly string[] Summaries = new[]
     {

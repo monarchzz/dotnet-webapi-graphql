@@ -1,41 +1,39 @@
-﻿using Domain.Entities;
-using EFCore.Initialization;
+﻿using API.Resolvers.Tenants.Dtos;
+using Domain.Entities;
+using EFCore.ConnectionString;
 using Finbuckle.MultiTenant;
-using Shared.Provider;
+using Mapster;
 
 namespace API.Resolvers.Tenants;
 
 [ExtendObjectType(OperationTypeNames.Query)]
 public class TenantQueries
 {
-    public async Task<bool> GetTenant(CancellationToken cancellationToken,
-        [Service]
-        IDatabaseInitializer databaseInitializer,
-        [Service]
-        IMultiTenantStore<VHNTenantInfo> tenantStore)
+    [UseFiltering]
+    [UseSorting]
+    public async Task<IEnumerable<TenantPayload>> GetTenants([Service()] IConnectionStringSecurer csSecurer,
+        [Service(ServiceKind.Synchronized)] IMultiTenantStore<VHNTenantInfo> tenantStore)
     {
-        var tenant = new VHNTenantInfo
-        {
-            Id = "demo",
-            Identifier = "demo",
-            Name = "demo",
-            ConnectionString = "Data Source=.;Initial Catalog=DEMOVHN;Integrated Security=True",
-            AdminEmail = "d",
-            IsActive = true,
-            ValidUpto = DateTimeProvider.MaxDate
-        };
-        await tenantStore.TryAddAsync(tenant);
+        var tenants = await tenantStore.GetAllAsync();
+        var tenantsPayload = tenants.Adapt<List<TenantPayload>>();
 
-        try
+        tenantsPayload.ForEach(t => t.ConnectionString = csSecurer.MakeSecure(t.ConnectionString) ?? "");
+
+        return tenantsPayload;
+    }
+
+    public async Task<TenantPayload?> GetTenant(string id,
+        [Service()] IConnectionStringSecurer csSecurer,
+        [Service(ServiceKind.Synchronized)] IMultiTenantStore<VHNTenantInfo> tenantStore)
+    {
+        var tenant = await tenantStore.TryGetAsync(id);
+
+        var tenantPayload = tenant?.Adapt<TenantPayload>();
+        if (tenantPayload is not null)
         {
-            await databaseInitializer.InitializeApplicationDbForTenantAsync("demo", tenant, cancellationToken);
-        }
-        catch (Exception e)
-        {
-            await tenantStore.TryRemoveAsync("demo");
-            throw;
+            tenantPayload.ConnectionString = csSecurer.MakeSecure(tenant!.ConnectionString) ?? "";
         }
 
-        return true;
+        return tenantPayload;
     }
 }

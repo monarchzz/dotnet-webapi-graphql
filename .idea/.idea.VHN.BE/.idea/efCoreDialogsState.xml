@@ -4,7 +4,7 @@
     <option name="keyValueStorage">
       <map>
         <entry key="Common:buildConfiguration" value="Debug" />
-        <entry key="Common:dbContext" value="EFCore.Context.AppDbContext" />
+        <entry key="Common:dbContext" value="EFCore.Context.TenantDbContext" />
         <entry key="Common:noBuild" value="false" />
         <entry key="Common:outputFolder" value="Migrations" />
       </map>

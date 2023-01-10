@@ -5,20 +5,21 @@ using Domain.Entities;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Shared.Authentication.Interface;
+using Shared.Authorization;
 using Shared.Provider;
 
 namespace Shared.Authentication.Implementations;
 
-public class JwtTokenGenerator : IJwtTokenGenerator
+public class JwtTokenHelper : IJwtTokenHelper
 {
     private readonly JwtSettings _jwtSettings;
 
-    public JwtTokenGenerator(IOptions<JwtSettings> jwtOptions)
+    public JwtTokenHelper(IOptions<JwtSettings> jwtOptions)
     {
         _jwtSettings = jwtOptions.Value;
     }
 
-    public string GenerateToken(User user)
+    public string GenerateToken(User user, string tenant)
     {
         var claims = new List<Claim>
         {
@@ -26,6 +27,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             new(JwtRegisteredClaimNames.GivenName, user.FirstName),
             new(JwtRegisteredClaimNames.FamilyName, user.LastName),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new(Claims.Tenant, tenant)
         };
 
         var signingCredentials =
@@ -66,7 +68,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
     }
 
 
-    public Guid? VerifyToken(string refreshToken)
+    public Guid? VerifyRefreshToken(string refreshToken)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var validationParameters = new TokenValidationParameters

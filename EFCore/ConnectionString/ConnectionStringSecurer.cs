@@ -1,6 +1,4 @@
-﻿using EFCore.Common;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Data.SqlClient;
 
 namespace EFCore.ConnectionString;
 
@@ -10,7 +8,7 @@ public class ConnectionStringSecurer : IConnectionStringSecurer
 
     public string? MakeSecure(string? connectionString)
     {
-        if (connectionString == null || string.IsNullOrEmpty(connectionString))
+        if (string.IsNullOrEmpty(connectionString))
         {
             return connectionString;
         }

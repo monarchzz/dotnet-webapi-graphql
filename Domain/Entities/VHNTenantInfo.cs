@@ -6,7 +6,9 @@ public class VHNTenantInfo : ITenantInfo
 {
     public string Id { get; set; } = null!;
 
-    // subdomain
+    /// <summary>
+    /// Subdomain
+    /// </summary>
     public string Identifier { get; set; } = null!;
 
     public string Name { get; set; } = null!;
@@ -15,11 +17,11 @@ public class VHNTenantInfo : ITenantInfo
 
     public string AdminEmail { get; set; } = null!;
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; set; } = true;
 
     public DateTime ValidUpto { get; set; }
 
-    public void SetValidity(in DateTime validTill) => ValidUpto = validTill;
+    public void SetValidity(DateTime validTill) => ValidUpto = validTill;
 
 
     public void Activate()

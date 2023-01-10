@@ -1,4 +1,5 @@
 using API;
+using API.Authentication;
 using EFCore;
 using Shared;
 
@@ -10,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services
         .AddEFCore()
         .AddShare()
-        .AddAPI();
+        .AddAPI(builder.Configuration);
 }
 
 var app = builder.Build();
@@ -23,7 +24,8 @@ var app = builder.Build();
 
     app.UseHttpsRedirection();
     app.UseMultiTenant();
-    // app.UseAuthorization();
+    app.UseAuthentication();
+    app.UseAuthorization();
     // app.MapControllers();
 
     app.UseWebSockets()

@@ -17,6 +17,8 @@ public class AppDbContext : DbContext
     private readonly string _connectionString;
     private ITenantInfo? TenantInfo { get; set; }
 
+    public string? TenantIdentifier => TenantInfo?.Identifier;
+
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<RoleClaim> RoleClaims => Set<RoleClaim>();
     public DbSet<User> Users => Set<User>();
