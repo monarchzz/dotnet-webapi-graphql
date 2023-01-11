@@ -27,7 +27,7 @@ public static class DependencyInjection
             .AddSingleton<IConnectionStringSecurer, ConnectionStringSecurer>()
             .AddSingleton<IConnectionStringGenerator, ConnectionStringGenerator>();
 
-        services.AddScoped(typeof(IAppRepository<>), typeof(AppRepository<>));
+        services.AddTransient(typeof(IAppRepository<>), typeof(AppRepository<>));
 
         return services;
     }

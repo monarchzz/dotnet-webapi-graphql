@@ -75,6 +75,31 @@ public class AppRepository<TEntity> : IAppRepository<TEntity> where TEntity : cl
         return await _noTrackingQuery().FirstOrDefaultAsync(expression, cancellationToken);
     }
 
+    public async Task<List<TEntity>> Finds(List<Guid> ids, CancellationToken cancellationToken = default)
+    {
+        var method = ids.GetType().GetMethod("Contains");
+        if (method == null)
+            throw new Exception("Ids does not have Contains method");
+
+        var property = typeof(TEntity).GetProperty("Id");
+        if (property == null)
+            throw new Exception("Entity does not have Id property");
+
+        var lambdaArg = Expression.Parameter(typeof(TEntity));
+        var propertyAccess = Expression.MakeMemberAccess(lambdaArg, property);
+
+        var call = Expression.Call(Expression.Constant(ids), method, propertyAccess);
+
+        var expression = Expression.Lambda<Func<TEntity, bool>>(call, lambdaArg);
+
+        return await _noTrackingQuery().Where(expression).ToListAsync(cancellationToken);
+    }
+
+    public Task<List<TEntity>> Finds(Guid id, CancellationToken cancellationToken = default)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<bool> Any(Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default)
     {

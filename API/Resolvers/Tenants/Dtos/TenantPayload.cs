@@ -8,7 +8,7 @@ public class TenantPayload
 
     public string Name { get; set; } = null!;
 
-    public string ConnectionString { get; set; } = null!;
+    // public string ConnectionString { get; set; } = null!;
 
     public string AdminEmail { get; set; } = null!;
 

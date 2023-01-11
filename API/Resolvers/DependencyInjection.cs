@@ -11,7 +11,6 @@ public static class DependencyInjection
     public static IServiceCollection AddResolvers(this IServiceCollection services)
     {
         services.AddGraphQLServer()
-            // .AddMutationConventions(applyToAllMutations: true)
             .AddAuthorization()
             .AddQuery()
             .AddMutation()

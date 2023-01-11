@@ -24,6 +24,9 @@ public class TenantMutations
         if (await tenantStore.TryGetByIdentifierAsync(input.Identifier) != null)
             throw AppErrors.Tenant.AlreadyExists;
 
+        if((await tenantStore.GetAllAsync()).Any(tenant => tenant.AdminEmail == input.Email))
+            throw AppErrors.Tenant.EmailAlreadyExists;
+
         var tenant = new VHNTenantInfo
         {
             Id = input.Identifier,
@@ -55,7 +58,7 @@ public class TenantMutations
         }
 
         var tenantPayload = tenant.Adapt<TenantPayload>();
-        tenantPayload.ConnectionString = csSecurer.MakeSecure(tenant!.ConnectionString) ?? "";
+        // tenantPayload.ConnectionString = csSecurer.MakeSecure(tenant!.ConnectionString) ?? "";
 
         return tenantPayload;
     }

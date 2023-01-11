@@ -14,5 +14,8 @@ public static partial class AppErrors
 
         public static GraphqlError TenantIsRequired =>
             new GraphqlError(code: "Tenant.TenantIsRequired", message: "Tenant is required.");
+
+        public static GraphqlError EmailAlreadyExists =>
+            new GraphqlError(code: "Tenant.EmailAlreadyExists", message: "Email already exists.");
     }
 }

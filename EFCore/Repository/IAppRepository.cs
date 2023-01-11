@@ -18,6 +18,8 @@ public interface IAppRepository<TEntity> where TEntity : class
 
     Task<TEntity?> Find(Guid id, CancellationToken cancellationToken = default);
 
+    Task<List<TEntity>> Finds(List<Guid> ids, CancellationToken cancellationToken = default);
+
     Task<bool> Any(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);
 
     Task<bool> All(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken = default);

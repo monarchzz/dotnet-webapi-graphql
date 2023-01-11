@@ -15,7 +15,7 @@ public class AuthenticationMutations
 {
     public async Task<AuthPayload> Login(LoginInput input,
         CancellationToken cancellationToken,
-        [Service()] IAppRepository<User> userRepository,
+        [Service(ServiceKind.Synchronized)] IAppRepository<User> userRepository,
         [Service()] IJwtTokenHelper jwtTokenHelper,
         [Service()] IPasswordHelper passwordHelper)
     {
@@ -40,7 +40,7 @@ public class AuthenticationMutations
 
     public async Task<AuthPayload> SignUp(SignUpInput input,
         CancellationToken cancellationToken,
-        [Service()] IAppRepository<User> userRepository,
+        [Service(ServiceKind.Synchronized)] IAppRepository<User> userRepository,
         [Service()] IJwtTokenHelper jwtTokenHelper,
         [Service()] IPasswordHelper passwordHelper)
     {
@@ -72,13 +72,13 @@ public class AuthenticationMutations
 
     public async Task<AuthPayload> RefreshToken(RefreshTokenInput input,
         CancellationToken cancellationToken,
-        [Service()] IAppRepository<User> userRepository,
+        [Service(ServiceKind.Synchronized)] IAppRepository<User> userRepository,
         [Service()] IJwtTokenHelper jwtTokenHelper)
     {
         var userId = jwtTokenHelper.VerifyRefreshToken(input.RefreshToken);
         if (userId == null) throw AppErrors.Authentication.TokenExpiredOrInvalid;
 
-        var user = await userRepository.Find((Guid)userId, cancellationToken);
+        var user = await userRepository.Find((Guid) userId, cancellationToken);
         if (user == null) throw AppErrors.Authentication.InvalidCredentials;
 
         var token = jwtTokenHelper.GenerateToken(user, userRepository.TenantIdentifier());
@@ -95,7 +95,7 @@ public class AuthenticationMutations
     [Authorize]
     public async Task<bool> ChangePassword(ChangePasswordInput input,
         CancellationToken cancellationToken,
-        [Service()] IAppRepository<User> userRepository,
+        [Service(ServiceKind.Synchronized)] IAppRepository<User> userRepository,
         [Service()] IPasswordHelper passwordHelper,
         ClaimsPrincipal claimsPrincipal
     )

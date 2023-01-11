@@ -17,7 +17,7 @@ public class TenantQueries
         var tenants = await tenantStore.GetAllAsync();
         var tenantsPayload = tenants.Adapt<List<TenantPayload>>();
 
-        tenantsPayload.ForEach(t => t.ConnectionString = csSecurer.MakeSecure(t.ConnectionString) ?? "");
+        // tenantsPayload.ForEach(t => t.ConnectionString = csSecurer.MakeSecure(t.ConnectionString) ?? "");
 
         return tenantsPayload;
     }
@@ -29,10 +29,11 @@ public class TenantQueries
         var tenant = await tenantStore.TryGetAsync(id);
 
         var tenantPayload = tenant?.Adapt<TenantPayload>();
-        if (tenantPayload is not null)
-        {
-            tenantPayload.ConnectionString = csSecurer.MakeSecure(tenant!.ConnectionString) ?? "";
-        }
+
+        // if (tenantPayload is not null)
+        // {
+        //     tenantPayload.ConnectionString = csSecurer.MakeSecure(tenant!.ConnectionString) ?? "";
+        // }
 
         return tenantPayload;
     }

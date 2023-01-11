@@ -1,11 +1,8 @@
-﻿using API.Authentication.Permissions;
-using HotChocolate.AspNetCore.Authorization;
-using Shared.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 
 namespace API.Resolvers.WeatherForecasts;
 
 [ExtendObjectType(OperationTypeNames.Query)]
-[Authorize]
 public class WeatherForecastQueries
 {
     private static readonly string[] Summaries = new[]
@@ -13,6 +10,7 @@ public class WeatherForecastQueries
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
+    [AllowAnonymous]
     public IEnumerable<WeatherForecast> GetWeatherForecast()
     {
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
