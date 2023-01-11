@@ -1,4 +1,4 @@
-﻿# VHN
+﻿# dotnet-webapi-graphql
 
 ## Getting Started
 ### Setting up the Connection String
